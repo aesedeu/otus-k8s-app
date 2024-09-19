@@ -7,3 +7,8 @@ containers:
     replicas: 3
   ubuntu:
     version: 24.04
+
+autoscale:
+  minReplicas: 1
+  maxReplicas: 5
+  cpuUtilization: 50
