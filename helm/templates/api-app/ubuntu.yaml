@@ -7,7 +7,7 @@ metadata:
 spec:
   containers:
     - name: ubuntu-pod
-      image: ubuntu: {{ .Values.containers.ubuntu.version }}
+      image: ubuntu:{{ .Values.containers.ubuntu.version }}
       command:
         - sleep
         - infinity
