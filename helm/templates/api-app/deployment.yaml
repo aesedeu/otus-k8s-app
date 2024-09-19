@@ -19,3 +19,11 @@ spec:
         image: {{ .Values.containers.apicontainer.image }}
         ports:
         - containerPort: {{ .Values.containers.apicontainer.container_port }}
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/config/config.yaml
+          subPath: config.yaml
+      volumes:
+      - name: config-volume
+        configMap:
+          name: welcome-configmap
