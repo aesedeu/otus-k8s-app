@@ -5,3 +5,5 @@ containers:
     container_port: 8000
     app_port: 80
     replicas: 3
+  ubuntu:
+    version: 24.04
