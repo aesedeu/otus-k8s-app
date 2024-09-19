@@ -30,6 +30,17 @@ kubectl port-forward svc/argocd-server -n argocd 8080:80
 # Декларативное создание приложения
 kubectl apply -f application.yaml
 
+# Можно менять версию приложения в файле values.yaml
+# Проваливаемся во-внутрь пода с убунтой
+kubectl exec -it ubuntu-pod bash
+uname -a
+apt-get update
+apt-get install curl
+# Дергаем ручку у конкретного пода. Необходимо указать актуальный ip пода внутри кластера
+curl -X POST "http://10.244.1.5:80/rec" -H "Content-Type: application/json" -d '{"Age": 30, "Sex": 1, "BloodPressure": 150, "MaxHeartRate": 160}'
+# Дергаем ручки у сервиса и видим Round-Robin
+curl -X POST "http://otus-app-service:80/rec" -H "Content-Type: application/json" -d '{"Age": 30, "Sex": 1, "BloodPressure": 150, "MaxHeartRate": 160}'
+
 # Проброс для БД
 kubectl port-forward svc/postgres-app -n default 5432:5432
 
