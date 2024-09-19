@@ -4,7 +4,7 @@ metadata:
   name: otus-app-service
   namespace: default
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: {{ .Values.containers.apicontainer.name }}
   ports:

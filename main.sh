@@ -31,7 +31,7 @@ kubectl port-forward svc/argocd-server -n argocd 8080:80
 kubectl apply -f application.yaml
 
 # Можно выставить порт сервиса наружу (не будет балансировать нагрузку)
-kubectl port-forward svc/otus-app-service -n default 8000:80
+kubectl port-forward svc/otus-app-service -n default 80:80
 
 # Можно менять версию приложения в файле values.yaml
 # Проваливаемся вовнутрь пода с убунтой
@@ -46,7 +46,13 @@ curl -v -X POST "http://otus-app-service:80/rec" -H "Content-Type: application/j
 exit
 
 # История обновлений
-# Можно откатиться через интерфейс ArgoCD
+# Можно откатиться через интерфейс ArgoCD в разделе "History and Rollback"
+
+
+# Ингресс
+minikube addons enable ingress
+kubectl apply -f ingress.yaml
+sudo vim /etc/hosts
 
 # Проброс для БД
 kubectl port-forward svc/postgres-app -n default 5432:5432
