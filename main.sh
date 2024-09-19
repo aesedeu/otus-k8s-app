@@ -48,9 +48,9 @@ exit
 # История обновлений
 # Можно откатиться через интерфейс ArgoCD в разделе "History and Rollback"
 
-
 # Ингресс
 minikube addons enable ingress
+minikube ip
 kubectl apply -f ingress.yaml
 sudo vim /etc/hosts
 

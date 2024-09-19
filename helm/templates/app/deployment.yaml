@@ -13,7 +13,7 @@ spec:
     rollingUpdate:
       maxSurge: 1 # Сколько новых подов при апдейте за раз будет создаваться одновременно
       maxUnavailable: 33% # Сколько подов в момент обновления могут быть недостпны (можно указать числом подов или в %)
-    type: RollingUpdate
+    type: RollingUpdate # Recreate / Canary
   template:
     metadata:
       labels:
