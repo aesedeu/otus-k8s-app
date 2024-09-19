@@ -5,11 +5,11 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    namespace: test
+    namespace: default
     server: 'https://kubernetes.default.svc'
   source:
-    path: helm-app
-    repoURL: 'https://github.com/aesedeu/test-helm-app.git'
+    path: helm
+    repoURL: 'https://github.com/aesedeu/otus-k8s-app.git'
     targetRevision: HEAD
   project: default
   syncPolicy:
