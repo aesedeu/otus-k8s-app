@@ -11,7 +11,7 @@ COPY . .
 RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
 
 # Откройте порт 8000
-EXPOSE 8000
+EXPOSE 80
 
 # Укажите команду для запуска вашего приложения
 ENTRYPOINT ["python", "./app.py"]
