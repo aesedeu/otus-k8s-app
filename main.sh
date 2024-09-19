@@ -1,5 +1,5 @@
 # Запуск FastAPI
-pyton app.py
+python app.py
 
 # Проверка ответа
 curl -v -X POST "http://localhost:8000/rec" -H "Content-Type: application/json" -d '{"Age": 30, "Sex": 1, "BloodPressure": 150, "MaxHeartRate": 160}'  
@@ -30,4 +30,5 @@ kubectl port-forward svc/argocd-server -n argocd 8080:80
 # Декларативное создание приложения
 kubectl apply -f application.yaml
 
+# Проброс для БД
 kubectl port-forward svc/postgres-app -n default 5432:5432

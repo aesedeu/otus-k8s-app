@@ -27,18 +27,18 @@ spec:
         startupProbe:
           httpGet:
             path: /startup
-            port: {{ .Values.containers.apicontainer.container_port }}
+            port: {{ .Values.containers.apicontainer.app_port }}
         readinessProbe:
           httpGet:
             path: /ready
-            port: {{ .Values.containers.apicontainer.container_port }}
+            port: {{ .Values.containers.apicontainer.app_port }}
           initialDelaySeconds: 1
           periodSeconds: 10
           failureThreshold: 2
         livenessProbe:
           httpGet:
             path: /health
-            port: {{ .Values.containers.apicontainer.container_port }}
+            port: {{ .Values.containers.apicontainer.app_port }}
           initialDelaySeconds: 1
           periodSeconds: 10
           failureThreshold: 2
