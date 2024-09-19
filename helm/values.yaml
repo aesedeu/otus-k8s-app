@@ -4,7 +4,7 @@ containers:
     image: aesedeu/otus_k8s_app:2.0
     container_port: 80
     app_port: 80
-    replicas: 3
+    replicas: 2
   ubuntu:
     version: 24.04
   postgres:
