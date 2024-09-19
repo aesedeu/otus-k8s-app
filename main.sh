@@ -29,3 +29,5 @@ kubectl port-forward svc/argocd-server -n argocd 8080:80
 
 # Декларативное создание приложения
 kubectl apply -f application.yaml
+
+kubectl port-forward svc/postgres-app -n default 5432:5432

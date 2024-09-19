@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Request
+from fastapi import FastAPI, status, Response, Request, HTTPException
 from pydantic import BaseModel
 import uvicorn
 import datetime
@@ -24,6 +25,18 @@ class model_data(BaseModel):
     Sex: int
     BloodPressure: int
     MaxHeartRate: int
+
+@app.get('/startup', tags=["monitoring_handlers"], description="Ручка для k8s. Проверка запуска пода.")
+def startup() -> Response:
+    return Response(status_code=status.HTTP_200_OK)
+
+@app.get('/ready', tags=["monitoring_handlers"], description="Ручка для k8s. Проверка готовности пода.")
+def startup() -> Response:
+    return Response(status_code=status.HTTP_200_OK)
+
+@app.get('/health', tags=["monitoring_handlers"], description="Ручка для k8s. Проверка статуса пода.")
+def startup() -> Response:
+    return Response(status_code=status.HTTP_200_OK)
 
 @app.get('/')
 def read_root():

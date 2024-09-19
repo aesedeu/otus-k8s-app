@@ -9,6 +9,11 @@ spec:
       app: {{ .Values.containers.apicontainer.name }}
   replicas: {{ .Values.containers.apicontainer.replicas }} # Эта строка будет игнорироваться автоскейлером
   revisionHistoryLimit: 3
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 33%
+    type: RollingUpdate
   template:
     metadata:
       labels:
@@ -19,6 +24,24 @@ spec:
         image: {{ .Values.containers.apicontainer.image }}
         ports:
         - containerPort: {{ .Values.containers.apicontainer.container_port }}
+        startupProbe:
+          httpGet:
+            path: /startup
+            port: {{ .Values.containers.apicontainer.container_port }}
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: {{ .Values.containers.apicontainer.container_port }}
+          initialDelaySeconds: 1
+          periodSeconds: 10
+          failureThreshold: 2
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: {{ .Values.containers.apicontainer.container_port }}
+          initialDelaySeconds: 1
+          periodSeconds: 10
+          failureThreshold: 2
         volumeMounts:
         - name: config-volume
           mountPath: /etc/config/config.yaml
@@ -27,3 +50,4 @@ spec:
       - name: config-volume
         configMap:
           name: welcome-configmap
+
