@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: otus-app-v1
+  labels:
+    app: otus-app
+spec:
+  containers:
+  - name: welcome-container
+    image: aesedeu/otus_k8s_app:1.0
+    volumeMounts:
+    - name: config-volume
+      mountPath: /etc/config/config.yaml
+      subPath: config.yaml
+      readOnly: true
+  volumes:
+  - name: config-volume
+    configMap:
+      name: welcome-configmap
