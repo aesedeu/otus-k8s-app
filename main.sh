@@ -98,3 +98,12 @@ sudo vim /etc/hosts
 
 # Проброс для БД
 kubectl port-forward svc/postgres-app -n default 5432:5432
+
+
+# ===== III часть =====
+# Создаем токен в GitLab: Setting -> CI/CD -> Runners -> New project runner.
+# В файле `values.yaml` прописываем:
+- gitlabUrl: https://gitlab.com/
+- runnerRegistrationToken: glrt-_q-m1FGHPdHbXWZZnyGy # пример токена
+# Создаем GitLab Runner в k8s командой:
+helm install --namespace gitlab --create-namespace gitlab -f ./k8s/6_gitlab-runner-k8s/values.yaml gitlab/gitlab-runner
