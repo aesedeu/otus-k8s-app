@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-service
+  namespace: test
+spec:
+  type: LoadBalancer
+  selector:
+    app: {{ .Values.containers.apicontainer.name }}
+  ports:
+  - port: {{ .Values.containers.apicontainer.app_port }}
+    protocol: TCP
+    targetPort: {{ .Values.containers.apicontainer.container_port }}
+  

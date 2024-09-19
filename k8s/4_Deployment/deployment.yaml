@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: otus-app-deployment
+spec:
+  replicas: 2 # можно менять и заново применять манифест
+  selector:
+    matchLabels:
+      app: otus-app
+  template:
+    metadata:
+      labels:
+        app: otus-app
+    spec:
+      containers:
+      - name: otus-app-v1
+        image: aesedeu/otus_k8s_app:1.0
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/config/config.yaml
+          subPath: config.yaml
+      volumes:
+      - name: config-volume
+        configMap:
+          name: welcome-configmap

@@ -1,0 +1,7 @@
+containers:
+  apicontainer:
+    name: otus-app
+    image: aesedeu/otus_k8s_app:1.0
+    container_port: 8000
+    app_port: 80
+    replicas: 3

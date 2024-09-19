@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.containers.apicontainer.name }}
+  namespace: test
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.containers.apicontainer.name }}
+  replicas: {{ .Values.containers.apicontainer.replicas }}
+  revisionHistoryLimit: 3
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.containers.apicontainer.name }}
+    spec:
+      containers:
+      - name: {{ .Values.containers.apicontainer.name }}
+        image: {{ .Values.containers.apicontainer.image }}
+        ports:
+        - containerPort: {{ .Values.containers.apicontainer.container_port }}
