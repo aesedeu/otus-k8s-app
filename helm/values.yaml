@@ -7,8 +7,15 @@ containers:
     replicas: 3
   ubuntu:
     version: 24.04
+  postgres:
+    name: postgres-app
+    image: postgres:latest
+    container_port: 5432
+    app_port: 5432
+    replicas: 1
+    POSTGRES_USER: postgres
 
 autoscale:
-  minReplicas: 1
+  minReplicas: 2
   maxReplicas: 5
   cpuUtilization: 50
